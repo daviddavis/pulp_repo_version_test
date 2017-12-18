@@ -30,24 +30,20 @@ and repository_id + content_id).
 
 ## Hardware
 
-* Inside a Vagrant VM with 2 cores
+* Vagrant VM with 2 cores
 * HDD ~110 MB/s (tested using `dd if=/dev/zero of=speedtest bs=64k count=3200 conv=fdatasync`)
 * 12 GB of RAM
 * Intel Xeon 4-core E5606 processor
 
 # Results
 
-| Repos  | Write (s) | Read (s) | Table (MB) | Index (MB) |
-|--------|-----------|----------|------------|------------|
-| 0      | 2.291756  | 0.008121 | 2.3        | 6.5        |
-| 100    | 2.182993  | 0.007838 | 74         | 183        |
-| 1000   | 2.725601  | 0.005223 | 735        | 1720       |
-| 10000  |
-| 50000  |
-| 100000 |
+| Repo Versions | Write (s) | Read (s) | Table (MB) | Index (MB) |
+|---------------|-----------|----------|------------|------------|
+| 0             | 2.291756  | 0.008121 | 2.3        | 6.5        |
+| 100           | 2.182993  | 0.007838 | 74         | 183        |
+| 1000          | 2.725601  | 0.005223 | 735        | 1720       |
+| 10000         | 55.44191  | 0.006683 | 7309       | 14691      |
+| 50000         |
+| 100000        |
 
-# Notes
-
-* I tried disabling indexing before seeding and then re-enabled it after seeing but that only shaved
-  off about 0.2-0.3 seconds per repo.
-* Vacuuming seemed to reduce the size of the index by about 30%.
+Note: There are 10,000 repository-version to content associations for each repo version.
